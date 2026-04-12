@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:hsqldb:mem:testdb
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
