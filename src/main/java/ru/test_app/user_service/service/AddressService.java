@@ -1,6 +1,6 @@
 package ru.test_app.user_service.service;
 
-import ru.test_app.user_service.model.Address;
+import ru.test_app.user_service.domain.Address;
 
 import java.util.List;
 

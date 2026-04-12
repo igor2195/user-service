@@ -1,4 +1,4 @@
-package ru.test_app.user_service.model;
+package ru.test_app.user_service.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

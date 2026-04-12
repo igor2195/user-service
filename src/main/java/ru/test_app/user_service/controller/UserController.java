@@ -2,50 +2,43 @@ package ru.test_app.user_service.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.test_app.user_service.model.User;
+import ru.test_app.user_service.domain.User;
 import ru.test_app.user_service.service.UserService;
 
-@Controller
-@RequestMapping("/users")
+import java.util.List;
+
+@RestController
+@RequestMapping("/v1/users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
     @GetMapping
-    public String list(@RequestParam(required = false) String search, Model model) {
-        model.addAttribute("users", userService.findAll(search));
-        return "users/list";
+    public List<User> getAll(@RequestParam(required = false) String search) {
+        return userService.findAll(search);
     }
 
-    @GetMapping("/form")
-    public String form(Model model) {
-        model.addAttribute("user", new User());
-        return "users/form";
+    @GetMapping("/{id}")
+    public User getById(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
-    @GetMapping("/form/{id}")
-    public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
-        return "users/form";
+    @PostMapping
+    public User create(@RequestBody @Valid User user) {
+        return userService.save(user);
     }
 
-    @PostMapping("/save")
-    public String save(@Valid @ModelAttribute User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "users/form";
-        }
-        userService.save(user);
-        return "redirect:/users";
+    @PutMapping("/{id}")
+    public User update(@PathVariable Long id,
+                       @RequestBody @Valid User user) {
+        user.setId(id);
+        return userService.save(user);
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
         userService.delete(id);
-        return "redirect:/users";
     }
 }

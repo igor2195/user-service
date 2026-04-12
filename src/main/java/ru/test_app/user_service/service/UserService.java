@@ -1,6 +1,6 @@
 package ru.test_app.user_service.service;
 
-import ru.test_app.user_service.model.User;
+import ru.test_app.user_service.domain.User;
 
 import java.util.List;
 

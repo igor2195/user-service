@@ -2,7 +2,7 @@ package ru.test_app.user_service.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.test_app.user_service.model.Address;
+import ru.test_app.user_service.domain.Address;
 import ru.test_app.user_service.repository.AddressRepository;
 
 import java.util.List;

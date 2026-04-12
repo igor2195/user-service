@@ -3,7 +3,7 @@ package ru.test_app.user_service.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.test_app.user_service.model.User;
+import ru.test_app.user_service.domain.User;
 import ru.test_app.user_service.repository.UserRepository;
 
 import java.util.List;

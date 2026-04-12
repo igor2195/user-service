@@ -1,4 +1,4 @@
-package ru.test_app.user_service.model;
+package ru.test_app.user_service.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -28,6 +28,7 @@ public class User {
     private String firstName;
 
     private String lastName;
+
     private String middleName;
 
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Номер должен состоять только из цифр")
