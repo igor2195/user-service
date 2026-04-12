@@ -1,6 +1,6 @@
 // Общие константы
-const USERS_API = "/user-service/api/v1/users";
-const ADDRESSES_API = "/user-service/api/v1/addresses";
+const USERS_API = "/user-service/v1/users";
+const ADDRESSES_API = "/user-service/v1/addresses";
 
 // Вспомогательная функция для защиты от XSS
 function escapeHtml(str) {
