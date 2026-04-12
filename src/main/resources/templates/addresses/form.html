@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Address Form</title>
+</head>
+<body>
+
+<h1>Address Form</h1>
+
+<form th:action="@{/addresses/save}" th:object="${address}" method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <div>
+        Country:
+        <input type="text" th:field="*{country}"/>
+    </div>
+
+    <div>
+        City:
+        <input type="text" th:field="*{city}"/>
+    </div>
+
+    <div>
+        Street:
+        <input type="text" th:field="*{street}"/>
+    </div>
+
+    <div>
+        House:
+        <input type="text" th:field="*{house}"/>
+    </div>
+
+    <div>
+        User:
+        <select th:field="*{user}">
+            <option value="" disabled selected>-- select user --</option>
+
+            <option th:each="u : ${users}"
+                    th:value="${u}"
+                    th:text="${u.firstName}">
+            </option>
+
+        </select>
+    </div>
+
+    <button type="submit">Save</button>
+
+</form>
+
+</body>
+</html>

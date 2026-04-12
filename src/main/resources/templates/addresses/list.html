@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Addresses</title>
+</head>
+<body>
+
+<h1>Addresses</h1>
+
+<a href="/addresses/form">➕ Add Address</a>
+
+<form method="get" action="/addresses">
+    <input type="text" name="search" placeholder="Search by city"/>
+    <button type="submit">Search</button>
+</form>
+
+<br/>
+
+<table border="1">
+    <tr>
+        <th>Country</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>House</th>
+        <th>User</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="a : ${addresses}">
+        <td th:text="${a.country}"></td>
+        <td th:text="${a.city}"></td>
+        <td th:text="${a.street}"></td>
+        <td th:text="${a.house}"></td>
+        <td th:text="${a.user != null ? a.user.firstName : ''}"></td>
+
+        <td>
+            <a th:href="@{'/addresses/form/' + ${a.id}}">Edit</a>
+            <a th:href="@{'/addresses/delete/' + ${a.id}}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
