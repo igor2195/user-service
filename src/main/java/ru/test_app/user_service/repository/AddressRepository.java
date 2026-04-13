@@ -8,6 +8,9 @@ import ru.test_app.user_service.domain.Address;
 
 import java.util.List;
 
+/**
+ * Репозитория для работы с {@link Address}
+ */
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
 

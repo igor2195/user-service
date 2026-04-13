@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Модель запроса/ответа данных Адреса
+ */
 @Data
 @Builder
 @NoArgsConstructor

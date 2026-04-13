@@ -6,6 +6,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * Модель данных Пользователя
+ */
 @Getter
 @Setter
 @NoArgsConstructor

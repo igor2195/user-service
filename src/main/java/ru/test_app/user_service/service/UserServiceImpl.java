@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public Long update(Long id, UserDto userDto) {
+    public UserDto update(Long id, UserDto userDto) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND.formatted(id)));
         userMapper.update(user, userDto);
         setAddress(user, extractAddressId(userDto));
-        return userRepository.save(user).getId();
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Transactional

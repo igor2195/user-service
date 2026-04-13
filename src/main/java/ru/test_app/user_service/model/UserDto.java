@@ -11,6 +11,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+
+/**
+ * Модель запроса/ответа данных Пользоватлея
+ */
 @Data
 @Builder
 @NoArgsConstructor

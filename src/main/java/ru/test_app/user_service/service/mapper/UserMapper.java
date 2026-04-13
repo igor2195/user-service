@@ -1,9 +1,13 @@
 package ru.test_app.user_service.service.mapper;
 
 import org.mapstruct.*;
+import ru.test_app.user_service.domain.Address;
 import ru.test_app.user_service.domain.User;
 import ru.test_app.user_service.model.UserDto;
 
+/**
+ * Маппер для {@link User}
+ */
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
 public interface UserMapper {
 

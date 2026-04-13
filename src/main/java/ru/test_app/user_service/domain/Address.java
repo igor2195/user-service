@@ -3,6 +3,9 @@ package ru.test_app.user_service.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Модель данных Адреса
+ */
 @Getter
 @Setter
 @NoArgsConstructor

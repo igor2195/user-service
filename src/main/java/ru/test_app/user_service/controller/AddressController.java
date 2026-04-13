@@ -35,7 +35,7 @@ public class AddressController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Long> update(@PathVariable Long id, @RequestBody @Valid AddressDto address) {
+    public ResponseEntity<AddressDto> update(@PathVariable Long id, @RequestBody @Valid AddressDto address) {
         return ResponseEntity.ok(addressService.update(id, address));
     }
 

@@ -15,6 +15,9 @@ import ru.test_app.user_service.model.exception.ApiError;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Обработчик ошибок
+ */
 @Slf4j
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)

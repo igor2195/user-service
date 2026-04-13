@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.Map;
 
+/**
+ * Модель базовой ошибки
+ */
 @Data
 @AllArgsConstructor
 public class ApiError {

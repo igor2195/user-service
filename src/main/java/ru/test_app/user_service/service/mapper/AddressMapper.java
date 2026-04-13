@@ -7,6 +7,9 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import ru.test_app.user_service.domain.Address;
 import ru.test_app.user_service.model.AddressDto;
 
+/**
+ * Маппер для {@link Address}
+ */
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
 

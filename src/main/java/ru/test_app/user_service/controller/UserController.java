@@ -34,7 +34,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Long update(@PathVariable Long id, @RequestBody @Valid UserDto user) {
+    public UserDto update(@PathVariable Long id, @RequestBody @Valid UserDto user) {
         return userService.update(id, user);
     }
 

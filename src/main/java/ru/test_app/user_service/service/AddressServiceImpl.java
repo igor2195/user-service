@@ -24,13 +24,10 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<AddressDto> findAll(String search) {
-        List<Address> list;
+        List<Address> list = (search != null && !search.isEmpty())
+                ? addressRepository.search(search)
+                : addressRepository.findAll();
 
-        if (search != null && !search.isEmpty()) {
-            list = addressRepository.search(search);
-        } else {
-            list = addressRepository.findAll();
-        }
         return list.stream()
                 .map(addressMapper::toDto)
                 .toList();
@@ -52,11 +49,11 @@ public class AddressServiceImpl implements AddressService {
 
     @Transactional
     @Override
-    public Long update(Long id, AddressDto addressDto) {
+    public AddressDto update(Long id, AddressDto addressDto) {
         Address address = addressRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(ADDRESS_NOT_FOUND.formatted(id)));
         addressMapper.update(address, addressDto);
-        return addressRepository.save(address).getId();
+        return addressMapper.toDto(addressRepository.save(address));
     }
 
     @Transactional

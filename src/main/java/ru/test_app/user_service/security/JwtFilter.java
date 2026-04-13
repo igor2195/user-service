@@ -13,6 +13,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * JWT фильтр для валидации запросов
+ */
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
