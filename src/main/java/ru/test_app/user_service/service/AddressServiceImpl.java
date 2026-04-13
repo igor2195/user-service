@@ -1,9 +1,14 @@
 package ru.test_app.user_service.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.test_app.user_service.domain.Address;
+import ru.test_app.user_service.domain.User;
+import ru.test_app.user_service.model.AddressDto;
 import ru.test_app.user_service.repository.AddressRepository;
+import ru.test_app.user_service.service.mapper.AddressMapper;
 
 import java.util.List;
 
@@ -11,23 +16,54 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
 
+    private static final String ADDRESS_NOT_FOUND = "Address not found with id: %s";
+
+
     private final AddressRepository addressRepository;
+    private final AddressMapper addressMapper;
 
-    public List<Address> findAll(String search) {
-        return (search != null && !search.isEmpty())
-                ? addressRepository.findByCityContainingIgnoreCase(search)
-                : addressRepository.findAll();
+    @Override
+    public List<AddressDto> findAll(String search) {
+        List<Address> list;
+
+        if (search != null && !search.isEmpty()) {
+            list = addressRepository.search(search);
+        } else {
+            list = addressRepository.findAll();
+        }
+        return list.stream()
+                .map(addressMapper::toDto)
+                .toList();
     }
 
-    public Address findById(Long id) {
-        return addressRepository.findById(id).orElseThrow();
+    @Override
+    public AddressDto findById(Long id) {
+        return addressRepository.findById(id)
+                .map(addressMapper::toDto)
+                .orElseThrow(() -> new EntityNotFoundException(ADDRESS_NOT_FOUND.formatted(id)));
     }
 
-    public Address save(Address address) {
-        return addressRepository.save(address);
+    @Transactional
+    @Override
+    public Long create(AddressDto addressDto) {
+        Address address = addressMapper.toEntity(addressDto);
+        return addressRepository.save(address).getId();
     }
 
+    @Transactional
+    @Override
+    public Long update(Long id, AddressDto addressDto) {
+        Address address = addressRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(ADDRESS_NOT_FOUND.formatted(id)));
+        addressMapper.update(address, addressDto);
+        return addressRepository.save(address).getId();
+    }
+
+    @Transactional
+    @Override
     public void delete(Long id) {
-        addressRepository.deleteById(id);
+        Address address = addressRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(ADDRESS_NOT_FOUND.formatted(id)));
+        addressRepository.delete(address);
     }
 }

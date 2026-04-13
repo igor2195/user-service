@@ -1,13 +1,18 @@
 package ru.test_app.user_service.service;
 
-import ru.test_app.user_service.domain.User;
+import ru.test_app.user_service.model.UserDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll(String search);
-    User findById(Long id);
-    User save(User user);
+    List<UserDto> findAll(String search);
+
+    UserDto findById(Long id);
+
+    Long create(UserDto userDto);
+
+    Long update(Long id, UserDto userDto);
+
     void delete(Long id);
 }

@@ -1,42 +1,41 @@
 package ru.test_app.user_service.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
-@Entity
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "middle_name")
     private String middleName;
 
-    @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Номер должен состоять только из цифр")
+    @Column(name = "phone")
     private String phone;
 
-    @Email
+    @Column(name = "email")
     private String email;
 
-    @NotNull
+    @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 }

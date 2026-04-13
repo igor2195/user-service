@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>Авторизация</h1>
+            <p class="subtitle">Войдите в систему для продолжения работы</p>
+        </div>
+
+        <div class="login-form">
+            <div class="form-group">
+                <label>Логин</label>
+                <input type="text" id="username" placeholder="Введите ваш логин">
+            </div>
+
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" id="password" placeholder="Введите пароль">
+            </div>
+
+            <div class="button-group">
+                <button class="login-btn" onclick="login()">Войти</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/auth.js"></script>
+
+</body>
+</html>

@@ -1,13 +1,18 @@
 package ru.test_app.user_service.service;
 
-import ru.test_app.user_service.domain.Address;
+import ru.test_app.user_service.model.AddressDto;
 
 import java.util.List;
 
 public interface AddressService {
 
-    List<Address> findAll(String search);
-    Address findById(Long id);
-    Address save(Address address);
+    List<AddressDto> findAll(String search);
+
+    AddressDto findById(Long id);
+
+    Long create(AddressDto addressDto);
+
+    Long update(Long id, AddressDto addressDto);
+
     void delete(Long id);
 }

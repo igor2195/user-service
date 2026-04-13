@@ -1,27 +1,32 @@
 package ru.test_app.user_service.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@Entity
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "address")
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String country;
+    @Column(name = "region", nullable = false)
+    private String region;
+
+    @Column(name = "city", nullable = false)
     private String city;
+
+    @Column(name = "street", nullable = false)
     private String street;
+
+    @Column(name = "house", nullable = false)
     private String house;
 
-    @ManyToOne
-    private User user;
+    @Column(name = "apartment")
+    private String apartment;
 }

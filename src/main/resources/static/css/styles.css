@@ -118,6 +118,15 @@ h2 {
     background: #f5f5f5;
 }
 
+.add-btn {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.add-btn:hover {
+    background: #45a049;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -200,7 +209,8 @@ tr:hover {
     display: block;
     margin-bottom: 5px;
     font-size: 13px;
-    color: #666;
+    font-weight: 500;
+    color: #333;
 }
 
 .form-group input {
@@ -214,12 +224,6 @@ tr:hover {
 .form-group input:focus {
     outline: none;
     border-color: #999;
-}
-
-.error-message {
-    color: #dc3545;
-    font-size: 12px;
-    margin-top: 4px;
 }
 
 .button-group {
@@ -237,6 +241,11 @@ tr:hover {
     background: white;
 }
 
+.save-btn {
+    background: #2196F3;
+    border-color: #2196F3;
+}
+
 .save-btn:hover {
     background: #0b7dda;
 }
@@ -245,7 +254,157 @@ tr:hover {
     background: #f5f5f5;
 }
 
-/* Адаптив */
+/* Стили для страницы логина */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.login-card {
+    max-width: 400px;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.login-header {
+    background: #f8f9fa;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.login-header h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.login-header .subtitle {
+    color: #666;
+    font-size: 13px;
+    margin: 0;
+}
+
+.login-form {
+    padding: 30px;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+}
+
+.login-form .form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.login-form .form-group input:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #2196F3;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.login-btn:hover {
+    background: #0b7dda;
+}
+
+/* Сообщения об ошибках валидации */
+.input-error {
+    border: 1px solid #dc3545 !important;
+    background: #fff5f5 !important;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 18px;
+}
+
+/* Toast уведомления */
+.toast-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    z-index: 9999;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+}
+
+.toast-error {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    z-index: 9999;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+}
+
+.login-error-message {
+    background: #fee;
+    color: #dc3545;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #dc3545;
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Адаптив для мобильных устройств */
 @media (max-width: 768px) {
     .toolbar {
         flex-direction: column;
@@ -266,5 +425,17 @@ tr:hover {
 
     .action-buttons {
         flex-direction: column;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+
+    .form-container {
+        padding: 0 10px;
     }
 }
