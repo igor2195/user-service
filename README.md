@@ -60,6 +60,8 @@ REST API сервис для управления пользователями �
 - `ROLE_ADMIN` — полный доступ(admin/admin)
 - `ANONYMOUS` — доступ только на чтение (GET /v1/**)
 
+---
+
 ## Запуск проекта
 1. Клонирование репозитория
    - git clone https://github.com/igor2195/user-service.git
