@@ -2,11 +2,9 @@ package ru.test_app.user_service.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.test_app.user_service.domain.Address;
-import ru.test_app.user_service.domain.User;
 import ru.test_app.user_service.model.AddressDto;
 import ru.test_app.user_service.repository.AddressRepository;
 import ru.test_app.user_service.service.mapper.AddressMapper;
@@ -24,7 +22,6 @@ public class AddressServiceImpl implements AddressService {
     private final AddressMapper addressMapper;
 
     @Override
-    @Cacheable("addresses")
     public List<AddressDto> findAll(String search) {
         List<Address> list = (search != null && !search.isEmpty())
                 ? addressRepository.search(search)
