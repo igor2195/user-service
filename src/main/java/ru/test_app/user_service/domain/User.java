@@ -35,7 +35,7 @@ public class User {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
     private Address address;
 }

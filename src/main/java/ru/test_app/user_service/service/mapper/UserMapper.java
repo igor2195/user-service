@@ -6,14 +6,13 @@ import ru.test_app.user_service.model.UserDto;
 
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
 public interface UserMapper {
-    @Mapping(source = "address", target = "address")
+
     UserDto toDto(User user);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(source = "address", target = "address")
+    @Mapping(target = "address", ignore = true)
     User toEntity(UserDto userDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(source = "address", target = "address")
+    @Mapping(target = "address", ignore = true)
     void update(@MappingTarget User entity, UserDto dto);
 }

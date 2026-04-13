@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> findAll(String search) {
         List<User> list = (search != null && !search.isEmpty())
                 ? userRepository.search(search)
-                : userRepository.findAll();
+                : userRepository.findAllWithAddress();
 
         return list.stream()
                 .map(userMapper::toDto)
@@ -49,11 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long create(UserDto userDto) {
         User user = userMapper.toEntity(userDto);
-        setAddress(user,
-                userDto.getAddress() != null
-                        ? userDto.getAddress().getId()
-                        : null
-        );
+        setAddress(user, extractAddressId(userDto));
         return userRepository.save(user).getId();
     }
 
@@ -63,6 +59,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND.formatted(id)));
         userMapper.update(user, userDto);
+        setAddress(user, extractAddressId(userDto));
         return userRepository.save(user).getId();
     }
 
@@ -72,6 +69,12 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND.formatted(id)));
         userRepository.delete(user);
+    }
+
+    private Long extractAddressId(UserDto dto) {
+        return dto.getAddress() != null
+                ? dto.getAddress().getId()
+                : null;
     }
 
     private void setAddress(User user, Long addressId) {
