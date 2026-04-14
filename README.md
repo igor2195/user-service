@@ -72,5 +72,6 @@ REST API сервис для управления пользователями �
 3. Запуск приложения
    - через Maven: mvn spring-boot:run
 4. Доступ к приложению
+   - Авторизация: http://localhost:8080/user-service/login.html
    - После запуска сервис будет доступен: http://localhost:8080/user-service/
    - Swagger доступен: http://localhost:8080/user-service/swagger-ui/index.html
