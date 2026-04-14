@@ -62,7 +62,7 @@ REST API сервис для управления пользователями �
 
 ---
 
-## Запуск проекта
+## Локальный запуск проекта 
 1. Клонирование репозитория
    - git clone https://github.com/igor2195/user-service.git
    - cd user-service

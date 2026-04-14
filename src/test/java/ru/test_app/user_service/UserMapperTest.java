@@ -7,16 +7,18 @@ import ru.test_app.user_service.domain.Address;
 import ru.test_app.user_service.domain.User;
 import ru.test_app.user_service.model.AddressDto;
 import ru.test_app.user_service.model.UserDto;
+import ru.test_app.user_service.service.mapper.AddressMapper;
 import ru.test_app.user_service.service.mapper.UserMapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class UserMapperTest extends BaseIntegrationTest{
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private AddressMapper addressMapper;
 
     @Test
     void toDto_mapsAddress() {
@@ -42,7 +44,10 @@ public class UserMapperTest extends BaseIntegrationTest{
         UserDto dto = new UserDto();
         dto.setAddress(addressDto);
 
+        Address address = addressMapper.toEntity(addressDto);
+
         User user = userMapper.toEntity(dto);
+        user.setAddress(address);
 
         assertNotNull(user.getAddress());
         assertEquals(5L, user.getAddress().getId());
